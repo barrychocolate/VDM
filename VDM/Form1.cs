@@ -184,11 +184,7 @@ namespace VDM
         private void Form1_Load(object sender, EventArgs e)
         {
             //Get prefared docking location from settings
-            //TODO add code to get position
-            DockPostion prefaredPosition = DockPostion.BottomRight;
-
-            //Set the position
-            DockTheForm(prefaredPosition);
+            loadDockSetting();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -256,6 +252,9 @@ namespace VDM
                     UncheckOtherToolStripMenuItems(bottomLeftToolStripMenuItem);
                     break;
             }
+
+            //Save the position to the registry
+            saveDockSetting(position);
         }
 
         public void UncheckOtherToolStripMenuItems(ToolStripMenuItem selectedMenuItem)
@@ -315,6 +314,41 @@ namespace VDM
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //TODO show an about form
+            AboutBox1 frmAbout = new AboutBox1();
+            frmAbout.ShowDialog();
+        }
+        private void loadDockSetting()
+        {
+            object position;
+            DockPostion regPosition;
+
+            string key = @"HKEY_CURRENT_USER\Software\VDM";
+            string valueName = "DockPosition"; // "(Default)" value
+
+            position = Microsoft.Win32.Registry.GetValue(key, valueName, string.Empty);
+            
+            Console.WriteLine(position.ToString());
+            if (position.ToString() != string.Empty) {
+                //Setting was returned
+                regPosition = (DockPostion)Convert.ToInt32(position.ToString());
+
+            }
+            else
+            {
+                // No setting returned so default to bottom right
+                regPosition= DockPostion.BottomRight;
+            }
+            DockTheForm(regPosition);
+        }
+        private void saveDockSetting(DockPostion position)
+        {
+            string key = @"HKEY_CURRENT_USER\Software\VDM";
+            string valueName = "DockPosition"; // "(Default)" value
+            string value = Convert.ToString((int)position);
+
+            Microsoft.Win32.Registry.SetValue(key, valueName, value,
+               Microsoft.Win32.RegistryValueKind.String);
+
         }
     }
 }

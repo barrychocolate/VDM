@@ -15,6 +15,6 @@ C:\Users\barry\Source\Repos\barrychocolate\VDM\VDM\obj\Debug\VDM.csprojAssemblyR
 C:\Users\barry\Source\Repos\barrychocolate\VDM\VDM\obj\Debug\VDM.frmVDM.resources
 C:\Users\barry\Source\Repos\barrychocolate\VDM\VDM\obj\Debug\VDM.Properties.Resources.resources
 C:\Users\barry\Source\Repos\barrychocolate\VDM\VDM\obj\Debug\VDM.csproj.GenerateResource.cache
-C:\Users\barry\Source\Repos\barrychocolate\VDM\VDM\obj\Debug\VDM.csproj.CoreCompileInputs.cache
 C:\Users\barry\Source\Repos\barrychocolate\VDM\VDM\obj\Debug\VDM.exe
 C:\Users\barry\Source\Repos\barrychocolate\VDM\VDM\obj\Debug\VDM.pdb
+C:\Users\barry\source\repos\barrychocolate\VDM\VDM\obj\Debug\VDM.AboutBox1.resources
