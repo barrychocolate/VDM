@@ -13,6 +13,7 @@ Clicking on the URL will launch the application, open the folder orload the webs
 * Menu strip added
 * System Tray notify icon added + context menu
 * Code added to repo
+* Visual Studio Git Hub extension installed
 
 ### Next time
 

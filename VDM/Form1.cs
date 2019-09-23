@@ -195,6 +195,7 @@ namespace VDM
         {
             //todo Add form closing action
             //Save Dock location to settings
+            //do something else
         }
 
         private void ContextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -309,6 +310,11 @@ namespace VDM
         private void FrmVDM_FormClosed(object sender, FormClosedEventArgs e)
         {
 
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO show an about form
         }
     }
 }
