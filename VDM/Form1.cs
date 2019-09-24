@@ -15,8 +15,12 @@ namespace VDM
     {
         enum DockPostion { TopLeft = 0, TopRight, BottomRight, BottomLeft};
 
+        //Defaults to Bottom right if no value found in registry
+        private DockPostion windowDock = DockPostion.BottomRight;
         private string xml_path = @"C:\test\vdm.xml";
         private DataTable vdmData = null;
+        private string dockPositionKey = @"HKEY_CURRENT_USER\Software\VDM";
+        private string dockPositionValueName = "DockPosition"; // "(Default)" value
 
         public frmVDM()
         {
@@ -90,10 +94,11 @@ namespace VDM
 
         private void PopulateTree()
         {
-
-            TreeNode node = tvwLinks.Nodes.Add("1", "test");
-            node.Nodes.Add("2", "Node 1 Sub 1");
-            tvwLinks.Nodes.Add("3","Node 2");
+            // Demo code to test
+            TreeNode node = tvwLinks.Nodes.Add("1", "test",0);
+            node.Nodes.Add("2", "Node 1 Sub 1",1);
+            node = tvwLinks.Nodes.Add("3","Node 2",0);
+            node.Nodes.Add("4", "Node 3", 2);
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -156,7 +161,7 @@ namespace VDM
                 // Query the datatables
                 DataRow[] rows = vdmData.Select(select_query);
 
-                // Deal with the URL
+                // If a root or subroot node then do nothing otherwise use the url
                 //MessageBox.Show(string.Format("Your selected url: {0}", rows[0][4].ToString()));
                 status_label.Text = string.Format("Your selected url: {0}", rows[0][4].ToString());
             }
@@ -214,21 +219,21 @@ namespace VDM
             Application.Exit();
         }
 
-        private void DockTheForm(DockPostion position)
+        private void DockTheForm()
         {
             //Dock the form using the supplied screen position
-            Console.WriteLine(string.Format("Docking the form {0}" , position.ToString()));
+            Console.WriteLine(string.Format("Docking the form {0}" , windowDock.ToString()));
 
             //Set x and y to zero which is the default for top left docking
             int x = 0;
             int y = 0;
 
-            if (position == DockPostion.BottomRight ^ position == DockPostion.TopRight)
+            if (windowDock == DockPostion.BottomRight ^ windowDock == DockPostion.TopRight)
             {
                 x = (int)(System.Windows.SystemParameters.WorkArea.Width - this.Width);
             }
 
-            if (position == DockPostion.BottomLeft ^ position==DockPostion.BottomRight)
+            if (windowDock == DockPostion.BottomLeft ^ windowDock == DockPostion.BottomRight)
             {
                 y = (int)(System.Windows.SystemParameters.WorkArea.Height - this.Height);
             }
@@ -236,7 +241,7 @@ namespace VDM
             this.DesktopLocation = new Point(x, y);
 
             //Check the menu item for the docking position
-            switch (position)
+            switch (windowDock)
             {
                 case DockPostion.TopLeft:
                     UncheckOtherToolStripMenuItems(topLeftToolStripMenuItem);
@@ -253,7 +258,7 @@ namespace VDM
             }
 
             //Save the position to the registry
-            saveDockSetting(position);
+            SaveDockSetting();
         }
 
         public void UncheckOtherToolStripMenuItems(ToolStripMenuItem selectedMenuItem)
@@ -274,19 +279,23 @@ namespace VDM
 
         private void BottomRightToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DockTheForm(DockPostion.BottomRight);
+            windowDock = DockPostion.BottomRight;
+            DockTheForm();
         }
         private void TopLeftToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DockTheForm(DockPostion.TopLeft);
+            windowDock = DockPostion.TopLeft;
+            DockTheForm();
         }
         private void TopRightToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DockTheForm(DockPostion.TopRight);
+            windowDock = DockPostion.TopRight;
+            DockTheForm();
         }
         private void BottomLeftToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DockTheForm(DockPostion.BottomLeft);
+            windowDock = DockPostion.BottomLeft;
+            DockTheForm();
         }
 
         private void FileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -318,36 +327,33 @@ namespace VDM
         }
         private void loadDockSetting()
         {
-            object position;
-            DockPostion regPosition;
+            string position;
 
-            string key = @"HKEY_CURRENT_USER\Software\VDM";
-            string valueName = "DockPosition"; // "(Default)" value
+            position = GetRegistrySetting(dockPositionKey, dockPositionValueName);
 
-            position = Microsoft.Win32.Registry.GetValue(key, valueName, string.Empty);
-            
-            Console.WriteLine(position.ToString());
-            if (position.ToString() != string.Empty) {
+            Console.WriteLine(position);
+            if (position != string.Empty) {
                 //Setting was returned
-                regPosition = (DockPostion)Convert.ToInt32(position.ToString());
+                windowDock = (DockPostion)Convert.ToInt32(position.ToString());
+                
+            }
 
-            }
-            else
-            {
-                // No setting returned so default to bottom right
-                regPosition= DockPostion.BottomRight;
-            }
-            DockTheForm(regPosition);
+            DockTheForm();
         }
-        private void saveDockSetting(DockPostion position)
+
+        private string GetRegistrySetting(string key, string valueName)
         {
-            string key = @"HKEY_CURRENT_USER\Software\VDM";
-            string valueName = "DockPosition"; // "(Default)" value
-            string value = Convert.ToString((int)position);
+            return Convert.ToString(Microsoft.Win32.Registry.GetValue(key, valueName, string.Empty));
+        }
 
-            Microsoft.Win32.Registry.SetValue(key, valueName, value,
-               Microsoft.Win32.RegistryValueKind.String);
-
+        private void SetRegistrySetting(string key, string valueName, string value)
+        {
+            Microsoft.Win32.Registry.SetValue(key, valueName, value, Microsoft.Win32.RegistryValueKind.String);
+        }
+        private void SaveDockSetting()
+        {
+            string value = Convert.ToString((int)windowDock);
+            SetRegistrySetting(dockPositionKey, dockPositionValueName, value);
         }
 
         private void openLink(string url)

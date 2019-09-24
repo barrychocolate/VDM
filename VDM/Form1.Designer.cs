@@ -54,6 +54,11 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLoadLink = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.x16ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.x32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.cmsNotifyIcon.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -101,8 +106,12 @@
             // 
             // tvwLinks
             // 
+            this.tvwLinks.ImageIndex = 0;
+            this.tvwLinks.ImageList = this.imageList1;
+            this.tvwLinks.ItemHeight = 32;
             this.tvwLinks.Location = new System.Drawing.Point(12, 85);
             this.tvwLinks.Name = "tvwLinks";
+            this.tvwLinks.SelectedImageIndex = 0;
             this.tvwLinks.Size = new System.Drawing.Size(324, 484);
             this.tvwLinks.TabIndex = 4;
             this.tvwLinks.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TvwLinks_AfterSelect);
@@ -166,6 +175,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.settingsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -262,6 +272,45 @@
             this.btnLoadLink.UseVisualStyleBackColor = true;
             this.btnLoadLink.Click += new System.EventHandler(this.btnLoadLink_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "arrow.ico");
+            this.imageList1.Images.SetKeyName(1, "File.ico");
+            this.imageList1.Images.SetKeyName(2, "folder.ico");
+            this.imageList1.Images.SetKeyName(3, "web.ico");
+            this.imageList1.Images.SetKeyName(4, "vdm.ico");
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemSizeToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // itemSizeToolStripMenuItem
+            // 
+            this.itemSizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.x16ToolStripMenuItem,
+            this.x32ToolStripMenuItem});
+            this.itemSizeToolStripMenuItem.Name = "itemSizeToolStripMenuItem";
+            this.itemSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.itemSizeToolStripMenuItem.Text = "Item size";
+            // 
+            // x16ToolStripMenuItem
+            // 
+            this.x16ToolStripMenuItem.Name = "x16ToolStripMenuItem";
+            this.x16ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.x16ToolStripMenuItem.Text = "16 x 16";
+            // 
+            // x32ToolStripMenuItem
+            // 
+            this.x32ToolStripMenuItem.Name = "x32ToolStripMenuItem";
+            this.x32ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.x32ToolStripMenuItem.Text = "32 x 32";
+            // 
             // frmVDM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,6 +369,11 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button btnLoadLink;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemSizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem x16ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem x32ToolStripMenuItem;
     }
 }
 
