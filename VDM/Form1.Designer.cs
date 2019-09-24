@@ -42,7 +42,6 @@
             this.cmsNotifyIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnMin = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,9 +51,9 @@
             this.bottomLeftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnMoveRight = new System.Windows.Forms.Button();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLoadLink = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.cmsNotifyIcon.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -149,7 +148,6 @@
             this.exitToolStripMenuItem});
             this.cmsNotifyIcon.Name = "cmsNotifyIcon";
             this.cmsNotifyIcon.Size = new System.Drawing.Size(104, 48);
-            this.cmsNotifyIcon.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip_Opening);
             // 
             // showToolStripMenuItem
             // 
@@ -163,16 +161,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
-            // 
-            // btnMin
-            // 
-            this.btnMin.Location = new System.Drawing.Point(94, 56);
-            this.btnMin.Name = "btnMin";
-            this.btnMin.Size = new System.Drawing.Size(75, 23);
-            this.btnMin.TabIndex = 7;
-            this.btnMin.Text = "Minimize";
-            this.btnMin.UseVisualStyleBackColor = true;
-            this.btnMin.Click += new System.EventHandler(this.BtnMin_Click);
             // 
             // menuStrip1
             // 
@@ -204,20 +192,20 @@
             this.bottomRightToolStripMenuItem,
             this.bottomLeftToolStripMenuItem});
             this.dockToolStripMenuItem.Name = "dockToolStripMenuItem";
-            this.dockToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dockToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.dockToolStripMenuItem.Text = "Dock";
             // 
             // topLeftToolStripMenuItem
             // 
             this.topLeftToolStripMenuItem.Name = "topLeftToolStripMenuItem";
-            this.topLeftToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.topLeftToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.topLeftToolStripMenuItem.Text = "Top Left";
             this.topLeftToolStripMenuItem.Click += new System.EventHandler(this.TopLeftToolStripMenuItem_Click);
             // 
             // topRightToolStripMenuItem
             // 
             this.topRightToolStripMenuItem.Name = "topRightToolStripMenuItem";
-            this.topRightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.topRightToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.topRightToolStripMenuItem.Text = "Top Right";
             this.topRightToolStripMenuItem.Click += new System.EventHandler(this.TopRightToolStripMenuItem_Click);
             // 
@@ -226,38 +214,28 @@
             this.bottomRightToolStripMenuItem.Checked = true;
             this.bottomRightToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.bottomRightToolStripMenuItem.Name = "bottomRightToolStripMenuItem";
-            this.bottomRightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bottomRightToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.bottomRightToolStripMenuItem.Text = "Bottom Right";
             this.bottomRightToolStripMenuItem.Click += new System.EventHandler(this.BottomRightToolStripMenuItem_Click);
             // 
             // bottomLeftToolStripMenuItem
             // 
             this.bottomLeftToolStripMenuItem.Name = "bottomLeftToolStripMenuItem";
-            this.bottomLeftToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bottomLeftToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.bottomLeftToolStripMenuItem.Text = "Bottom Left";
             this.bottomLeftToolStripMenuItem.Click += new System.EventHandler(this.BottomLeftToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(98, 6);
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.ExitToolStripMenuItem1_Click);
-            // 
-            // btnMoveRight
-            // 
-            this.btnMoveRight.Location = new System.Drawing.Point(175, 56);
-            this.btnMoveRight.Name = "btnMoveRight";
-            this.btnMoveRight.Size = new System.Drawing.Size(75, 23);
-            this.btnMoveRight.TabIndex = 9;
-            this.btnMoveRight.Text = "move right";
-            this.btnMoveRight.UseVisualStyleBackColor = true;
-            this.btnMoveRight.Click += new System.EventHandler(this.Button1_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -270,17 +248,26 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.aboutToolStripMenuItem.Text = "About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // btnLoadLink
+            // 
+            this.btnLoadLink.Location = new System.Drawing.Point(93, 56);
+            this.btnLoadLink.Name = "btnLoadLink";
+            this.btnLoadLink.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadLink.TabIndex = 9;
+            this.btnLoadLink.Text = "test link";
+            this.btnLoadLink.UseVisualStyleBackColor = true;
+            this.btnLoadLink.Click += new System.EventHandler(this.btnLoadLink_Click);
             // 
             // frmVDM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(348, 581);
-            this.Controls.Add(this.btnMoveRight);
-            this.Controls.Add(this.btnMin);
+            this.Controls.Add(this.btnLoadLink);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btnTreeview);
@@ -291,7 +278,9 @@
             this.Controls.Add(this.btnSave);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "frmVDM";
+            this.ShowInTaskbar = false;
             this.Text = "VDM";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmVDM_FormClosed);
@@ -316,7 +305,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status_label;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.Button btnMin;
         private System.Windows.Forms.ContextMenuStrip cmsNotifyIcon;
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -329,9 +317,9 @@
         private System.Windows.Forms.ToolStripMenuItem topLeftToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bottomRightToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bottomLeftToolStripMenuItem;
-        private System.Windows.Forms.Button btnMoveRight;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Button btnLoadLink;
     }
 }
 

@@ -178,6 +178,7 @@ namespace VDM
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.Close();
             Application.Exit();
         }
 
@@ -189,15 +190,12 @@ namespace VDM
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //todo Add form closing action
-            //Save Dock location to settings
-            //do something else
+            // remove notify icon from system tray
+            notifyIcon1.Icon = null;
+            Dispose();
         }
 
-        private void ContextMenuStrip_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
+    
 
         private void NotifyIcon1_Click(object sender, EventArgs e)
         {
@@ -212,6 +210,7 @@ namespace VDM
 
         private void ExitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            this.Close();
             Application.Exit();
         }
 
@@ -349,6 +348,22 @@ namespace VDM
             Microsoft.Win32.Registry.SetValue(key, valueName, value,
                Microsoft.Win32.RegistryValueKind.String);
 
+        }
+
+        private void openLink(string url)
+        {
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void btnLoadLink_Click(object sender, EventArgs e)
+        {
+            string filelink = @"C:\test\test.txt";
+            string folderlink = @"C:\test\";
+            string url = @"www.bbc.co.uk";
+
+            openLink(filelink);
+            openLink(folderlink);
+            openLink(url);
         }
     }
 }
