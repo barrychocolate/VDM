@@ -5,7 +5,6 @@ You can store application paths, folder paths and website urls.
 Clicking on the URL will launch the application, open the folder orload the website.
 
 ## 22nd September Update
-### Work so far
 
 * Loading data from and to xml 
 * Creating a simple treeview 
@@ -15,9 +14,12 @@ Clicking on the URL will launch the application, open the folder orload the webs
 * Code added to repo
 * Visual Studio Git Hub extension installed
 
-### Next time
+## 24th September update
 
 * Saving and loading docking position to registry or file
+* Click functionality for links
+
+## Next time
+
 * Promp to add first node
 * Recursively loading data into treeview
-* Click functionality for links
